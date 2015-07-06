@@ -8,6 +8,8 @@ It doesn't mean Electron is a JavaScript binding to GUI libraries. Instead,
 Electron uses web pages as its GUI, so you could also see it as a minimal
 Chromium browser, controlled by JavaScript.
 
+When including scripts from within web pages they will be resolved via CommonJS module loading pattern which lets you install your browser dependencies via npm. This mens that by default most module aware scripts will be loaded using the require pattern rather than global variables.
+
 ### Main process
 
 In Electron, the process that runs `package.json`'s `main` script is called
@@ -149,6 +151,10 @@ On OS X:
 ```bash
 $ ./Electron.app/Contents/MacOS/Electron your-app/
 ```
+
+## Further Development
+The next logical step is to start adding your own scripts and dependencies to the page, so for example if you were to want to add `jquery` as a dependency you could install it via npm and access it via `var query = require("jquery");` or you could have the file locally and access it via `var jquery = require("./path/to/jquery");` either way would work.
+
 
 `Electron.app` here is part of the Electron's release package, you can download
 it from [here](https://github.com/atom/electron/releases).
